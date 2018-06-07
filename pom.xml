@@ -61,6 +61,11 @@
       <timezone>0</timezone>
       <url>https://github.com/jodastephen</url>
     </developer>
+    <developer>
+      <id>bindul</id>
+      <name>Bindul Bhowmik</name>
+      <url>https://github.com/bindul</url>
+    </developer>
   </developers>
 
   <!-- ==================================================================== -->

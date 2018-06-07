@@ -10,7 +10,7 @@
 
   <groupId>org.joda.external</groupId>
   <artifactId>reflow-parent</artifactId>
-  <version>1.2-SNAPSHOT</version>
+  <version>1.2</version>
   <packaging>pom</packaging>
 
   <name>Reflow Maven Skin Parent (fork)</name>
@@ -28,7 +28,7 @@
     <connection>scm:git:https://github.com/JodaOrg/reflow-maven-skin.git</connection>
     <developerConnection>scm:git:https://github.com/JodaOrg/reflow-maven-skin.git</developerConnection>
     <url>https://github.com/JodaOrg/reflow-maven-skin</url>
-    <tag>HEAD</tag>
+    <tag>reflow-parent-1.2</tag>
   </scm>
   <issueManagement>
     <system>GitHub</system>

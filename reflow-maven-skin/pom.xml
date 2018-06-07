@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   
   <parent>
-    <groupId>lt.velykis.maven.skins</groupId>
+    <groupId>org.joda.external</groupId>
     <artifactId>reflow-parent</artifactId>
     <version>1.1.2-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
@@ -11,22 +11,10 @@
 
   <artifactId>reflow-maven-skin</artifactId>
 
-  <name>Reflow Maven Skin</name>
+  <name>Reflow Maven Skin (fork)</name>
   <description>Reflow is an Apache Maven site skin built on Twitter Bootstrap.
     It allows various structural and stylistic customizations to create
     a modern-looking Maven-generated website. Requires Reflow Velocity Tools.</description>
-
-  <!-- Indicate that the site for skin plug-in is nested under `skin` -->
-  <url>${site.url}/skin</url>
-
-  <distributionManagement>
-    <site>
-      <id>${site.deploy.id}</id>
-      <!-- Nest the actual skin plug-in under `skin` -->
-      <!-- Note that GitHub does not like having leading slash here -->
-      <url>${site.deploy.url}skin</url>
-    </site>
-  </distributionManagement>
 
   <build>
     <resources>

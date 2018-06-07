@@ -8,12 +8,12 @@
     <version>7</version>
   </parent>
 
-  <groupId>lt.velykis.maven.skins</groupId>
+  <groupId>org.joda.external</groupId>
   <artifactId>reflow-parent</artifactId>
   <version>1.1.2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Reflow Maven Skin Parent</name>
+  <name>Reflow Maven Skin Parent (fork)</name>
   <description>Reflow Maven skin and supporting libraries parent</description>
   <inceptionYear>2012</inceptionYear>
   
@@ -22,27 +22,17 @@
     <module>reflow-maven-skin</module>
   </modules>
 
-  <properties>
-    <site.url>http://andriusvelykis.github.io/reflow-maven-skin</site.url>
-    <github.global.server>github</github.global.server>
-    <site.deploy.id>gh-pages</site.deploy.id>
-    <site.deploy.url />
-
-    <repositoryName>reflow-maven-skin</repositoryName>
-    <repositoryOwner>andriusvelykis</repositoryOwner>
-  </properties>
-
-  <url>${site.url}</url>
+  <url>https://github.com/JodaOrg/reflow-maven-skin</url>
 
   <scm>
-    <connection>scm:git:git@github.com:andriusvelykis/reflow-maven-skin.git</connection>
-    <developerConnection>scm:git:git@github.com:andriusvelykis/reflow-maven-skin.git</developerConnection>
-    <url>http://github.com/andriusvelykis/reflow-maven-skin/tree/master</url>
+    <connection>scm:git:https://github.com/JodaOrg/reflow-maven-skin.git</connection>
+    <developerConnection>scm:git:https://github.com/JodaOrg/reflow-maven-skin.git</developerConnection>
+    <url>https://github.com/JodaOrg/reflow-maven-skin</url>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <system>GitHub</system>
-    <url>http://github.com/andriusvelykis/reflow-maven-skin/issues</url>
+    <url>http://github.com/JodaOrg/reflow-maven-skin/issues</url>
   </issueManagement>
 
   <licenses>
@@ -54,8 +44,8 @@
   </licenses>
 
   <organization>
-    <name>Andrius Velykis</name>
-    <url>http://andrius.velykis.lt</url>
+    <name>Joda.org</name>
+    <url>http://www.joda.org</url>
   </organization>
 
   <developers>
@@ -65,65 +55,23 @@
       <timezone>0</timezone>
       <url>http://andrius.velykis.lt</url>
     </developer>
+    <developer>
+      <id>jodastephen</id>
+      <name>Stephen Colebourne</name>
+      <timezone>0</timezone>
+      <url>https://github.com/jodastephen</url>
+    </developer>
   </developers>
 
+  <!-- ==================================================================== -->
   <build>
     <plugins>
-      <!-- Configure Maven site plugin for Reflow skin and Markdown support -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.3</version>
-        <dependencies>
-          <dependency>
-            <groupId>lt.velykis.maven.skins</groupId>
-            <artifactId>reflow-velocity-tools</artifactId>
-            <version>1.1.2-SNAPSHOT</version>
-          </dependency>
-          <dependency>
-            <!-- Reflow skin requires velocity 1.7 -->
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.7</version>
-          </dependency>
-        </dependencies>
-        <configuration>
-          <generateReports>true</generateReports>
-          <inputEncoding>UTF-8</inputEncoding>
-          <outputEncoding>UTF-8</outputEncoding>
-          <!-- Site deployment done using GitHub site plugin -->
-          <skipDeploy>true</skipDeploy>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <!-- GitHub site plug-in for deployment to GitHub pages -->
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-        <version>0.9</version>
-        <configuration>
-          <message>Creating site for ${project.artifactId}, ${project.version}</message>
-          <!-- this does the trick to place every module in the correct subfolder -->
-          <path>${project.distributionManagement.site.url}</path>
-          <merge>true</merge>
-        </configuration>
-        <executions>
-          <execution>
-            <id>github-site</id>
-            <goals>
-              <goal>site</goal>
-            </goals>
-            <phase>site-deploy</phase>
-          </execution>
-        </executions>
-      </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
         <version>2.4.2</version>
         <configuration>
-          <pushChanges>false</pushChanges>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
           <localCheckout>true</localCheckout>
         </configuration>
          <dependencies>
@@ -152,95 +100,22 @@
     </pluginManagement>
   </build>
 
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.7</version>
-        <configuration>
-          <anonymousConnection>scm:git:git@github.com:andriusvelykis/reflow-maven-skin.git</anonymousConnection>
-          <developerConnection>scm:git:git@github.com:andriusvelykis/reflow-maven-skin.git</developerConnection>
-        </configuration>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>summary</report>
-              <report>license</report>
-              <report>modules</report>
-              <report>project-team</report>
-              <report>scm</report>
-              <report>issue-tracking</report>
-              <report>dependencies</report>
-              <report>dependency-convergence</report>
-              <report>plugins</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-changes-plugin</artifactId>
-        <version>2.9</version>
-        <configuration>
-          <includeOpenIssues>false</includeOpenIssues>
-          <columnNames>Id,Type,Summary,Fix Version</columnNames>
-        </configuration>
-        <reportSets>
-          <reportSet>
-            <!-- Empty report set as default -->
-            <reports>
-            </reports>
-          </reportSet>
-          <reportSet>
-            <id>release-notes</id>
-            <inherited>false</inherited>
-            <reports>
-              <report>github-report</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-    </plugins>
-  </reporting>
-
+  <!-- ==================================================================== -->
   <distributionManagement>
-    <site>
-      <id>${site.deploy.id}</id>
-      <name>Deployment through GitHub's site deployment plugin</name>
-      <url>${site.deploy.url}</url>
-    </site>
+    <repository>
+      <id>sonatype-joda-staging</id>
+      <name>Sonatype OSS staging repository</name>
+      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <layout>default</layout>
+    </repository>
+    <snapshotRepository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>sonatype-joda-snapshot</id>
+      <name>Sonatype OSS snapshot repository</name>
+      <url>http://oss.sonatype.org/content/repositories/joda-snapshots</url>
+      <layout>default</layout>
+    </snapshotRepository>
+    <downloadUrl>http://oss.sonatype.org/content/repositories/joda-releases</downloadUrl>
   </distributionManagement>
-
-  <profiles>
-    <profile>
-      <id>stage</id>
-      <properties>
-        <site.deploy.url>http://github.com/andriusvelykis/reflow-maven-skin/tree/gh-pages/</site.deploy.url>
-      </properties>
-
-      <build>
-        <plugins>
-          <!-- Configure Maven site plugin to perform stage -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>3.3</version>
-            <executions>
-              <execution>
-                <id>stage</id>
-                <goals>
-                  <goal>stage</goal>
-                </goals>
-                <phase>site</phase>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-
-    </profile>
-  </profiles>
 
 </project>
